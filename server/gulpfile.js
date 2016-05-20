@@ -2,8 +2,9 @@
 var gulp = require('gulp'),
     concat = require('gulp-concat'),
     uglify = require('gulp-uglify'),
-    clean = require('gulp-rimraf'),
+    del = require('del'),
     jshint = require('gulp-jshint');
+
 
 gulp.task('jshint', function() {
     gulp.src(['*.js', 'js/*.js', 'data/*.js', 'lib/*.js'])
@@ -13,25 +14,34 @@ gulp.task('jshint', function() {
         ;
 });
 
+gulp.task('watch', function() {
+    gulp.watch(['*.js', 'js/*.js', 'data/*.js', 'lib/.*js', '!gulpfile.js', '*.html', 'partials/*.html', 'css/*.css'], copy_dev)
+})
 
-gulp.task('clean', function() {
-    gulp.src('../build/*', { read: false }).pipe(clean({force: true}));
+gulp.task('clean', function () {
+  return del([
+    '../build/**', '!../build'
+  ], {force: true});
 });
 
 
-gulp.task('build:dev', ['clean'], function() {
+function copy_dev() {
+    gulp.src(['node_modules/angular/angular.js', 'node_modules/angular-ui-router/release/angular-ui-router.js']).pipe(gulp.dest('../build/lib/'));
     gulp.src(['*.js', '!gulpfile.js']).pipe(gulp.dest('../build/'));
     gulp.src('js/*.js').pipe(gulp.dest('../build/js/'));
     gulp.src('data/*.js').pipe(gulp.dest('../build/data/'));
-    gulp.src('lib/*.js').pipe(gulp.dest('../build/lib/'));
     gulp.src('*.html').pipe(gulp.dest('../build/'));
     gulp.src('partials/*.html').pipe(gulp.dest('../build/partials/'));
     gulp.src('css/*.css').pipe(gulp.dest('../build/css/'));
-});
+
+}
+
+
+gulp.task('build:dev', ['clean'], copy_dev);
 
 
 gulp.task('build:prod', ['clean'], function() {
-    gulp.src(['*.js', 'js/*.js', 'data/*.js', 'lib/*.js', '!gulpfile.js'])
+    gulp.src(['*.js', 'js/*.js', 'data/*.js', '!gulpfile.js', 'node_modules/angular/angular.js', 'node_modules/angular-ui-router/release/angular-ui-router.js'])
         .pipe(concat('pizzeria.js'))
 	.pipe(uglify())
 	.pipe(gulp.dest('../build/'));
@@ -39,4 +49,3 @@ gulp.task('build:prod', ['clean'], function() {
     gulp.src('partials/*.html').pipe(gulp.dest('../build/partials/'));
     gulp.src('css/*.css').pipe(gulp.dest('../build/css/'));
 });
-

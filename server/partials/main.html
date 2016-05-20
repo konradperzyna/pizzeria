@@ -1,0 +1,6 @@
+<h3>Menu</h3>
+<p>"Try one of our great pizzas:"</p>
+<ul>
+    <li ng-repeat="item in menu">{{item.id}}. {{item.name}} <b>Cena: {{item.price}}</b><br />{{item.ingredients}}</li>
+</ul>
+<p>{{errorMessage}}</p>
