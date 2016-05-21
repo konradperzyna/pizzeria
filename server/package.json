@@ -13,13 +13,18 @@
     "angular-ui-router": "^0.3.0",
     "body-parser": "^1.14.1",
     "del": "^2.2.0",
+    "event-stream": "^3.3.2",
     "express": "^4.13.3",
     "gulp": "^3.9.1",
     "gulp-concat": "^2.6.0",
+    "gulp-inject": "^4.1.0",
     "gulp-jshint": "^2.0.0",
+    "gulp-ng-annotate": "^2.0.0",
+    "gulp-sourcemaps": "^1.6.0",
     "gulp-uglify": "^1.5.3",
     "jshint": "^2.9.2",
     "lodash": "^3.10.1",
+    "ng-annotate": "^1.2.1",
     "websocket": "^1.0.22"
   }
 }
