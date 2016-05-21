@@ -23,7 +23,9 @@ gulp.task('jshint', function() {
 });
 
 gulp.task('watch', function() {
-    gulp.watch(['./**/*.js', '!node_modules/**/*', '!gulpfile.js', './**/*.html', 'css/*.css'], copy_dev)
+//    gulp.watch(['./**/*.js', '!./node_modules/**/*', '!./gulpfile.js', './**/*.html', './css/*.css'], copy_dev)
+  gulp.watch(['./js/*.js', './data/*.js', './*.js', '!./gulpfile.js','./*.html', './partials/*.html', './css/*.css'], copy_dev)
+
 });
 
 gulp.task('clean', function () {
