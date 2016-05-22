@@ -1,10 +1,29 @@
-angular.module('pizzeria').factory('dataFactory', ['$http', function($http) {
+angular.module('pizzeria').factory('dataFactory', ['$http', '$q', function($http, $q) {
 
     var urlBase = './menu';
     var dataFactory = {};
 
     dataFactory.getMenu = function () {
-        return $http.get('./menu');
+        return $q.all({
+            'menu' : $http.get('./menu'),
+            'ingredients' : $http.get('./ingredients')
+        }).then(function (response) {
+            menu = response.menu.data;
+            ingredients = response.ingredients.data;
+            for (pizza of menu) {
+                for (arrayId in pizza.ingredients) {
+                    ingredientId = pizza.ingredients[arrayId];
+                    pizza.ingredients[arrayId] = ingredients.find(x=> x.id === ingredientId);
+                }
+            }
+            return menu;
+        });
+    };
+    
+    
+
+    dataFactory.getIngredients = function () {
+        return $http.get('./ingredients');
     };
 
     dataFactory.getOrderStatus = function (orderId) {
