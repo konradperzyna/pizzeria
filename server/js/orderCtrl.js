@@ -1,4 +1,5 @@
-angular.module('pizzeria').controller('OrderCtrl', function ($scope, $stateParams) {
+angular.module('pizzeria').controller('OrderCtrl', function ($scope, $stateParams, basket) {
     $scope.title = "Order";
-    $scope.basket = $stateParams.basket;
+    $scope.basket = basket;
+    console.log(basket);
 });

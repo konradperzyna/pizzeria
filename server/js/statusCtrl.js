@@ -2,7 +2,7 @@ angular.module('pizzeria').controller('StatusCtrl', function ($scope, $state, $s
     $scope.orderId = $stateParams.orderId;
     $scope.title = "Status of order "+$stateParams.orderId;
     
-    $scope.errorMessage;
+    $scope.errorMessage = "";
     $scope.orderStatus;
     
     dataFactory.getOrderStatus($stateParams.orderId).then(function (response) {

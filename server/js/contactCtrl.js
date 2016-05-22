@@ -1,5 +1,5 @@
 angular.module('pizzeria').controller('ContactCtrl', function ($scope, dataFactory) {
-    $scope.errorMessage;
+    $scope.errorMessage = "";
     $scope.contactInfo;
     
     dataFactory.getContactInfo().then(function (response) {

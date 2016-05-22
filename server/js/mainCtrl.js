@@ -1,8 +1,8 @@
-angular.module('pizzeria').controller('MainCtrl', function ($scope, dataFactory) {
+angular.module('pizzeria').controller('MainCtrl', function ($scope, dataFactory, basket) {
     
-    $scope.errorMessage;
+    $scope.errorMessage ="";
     $scope.menu;
-    $scope.basket = {}; 
+    $scope.basket = basket; 
     
     dataFactory.getMenu().then(function (response) {
         $scope.menu = response.data;
@@ -11,28 +11,32 @@ angular.module('pizzeria').controller('MainCtrl', function ($scope, dataFactory)
     });
     
     
-    $scope.addToBasket = function (pizza) {
-        if (!(pizza.id in $scope.basket)) {
-            pizza.quantity = 0;
-            $scope.basket[pizza.id] = pizza;
-        }
-        $scope.basket[pizza.id].quantity += 1;
-    };
+    // $scope.addToBasket = function (pizza) {
+    //     //console.log($scope.basket);
+    //     console.log("Now service:")
+    //     console.log(basket);
+        
+    //     if (!(pizza.id in basket)) {
+    //         pizza.quantity = 0;
+    //         basket[pizza.id] = pizza;
+    //     }
+    //     basket[pizza.id].quantity += 1;
+    // };
     
      
     
-    $scope.isBasketEmpty = function() {
-        return angular.equals({}, $scope.basket);
-    };
+    // $scope.isBasketEmpty = function() {
+    //     return angular.equals({}, basket);
+    // };
     
     
-    $scope.basketTotal = function() {
-        var total = 0;
-        for (var id in $scope.basket) {
-            var pizza = $scope.basket[id];
-            total += pizza.quantity * pizza.price;
-        }
-        return total;
-    };
+    // $scope.basketTotal = function() {
+    //     var total = 0;
+    //     for (var id in basket) {
+    //         var pizza = basket[id];
+    //         total += pizza.quantity * pizza.price;
+    //     }
+    //     return total;
+    // };
             
  });

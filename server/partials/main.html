@@ -1,12 +1,12 @@
-<div ng-hide="isBasketEmpty()" >
+<div ng-hide="basket.isEmpty()" >
     <ng-include src="'partials/basket.html'"/>
-    <button ui-sref="order()">Continue</button>
+    <button ui-sref="order()">Continue</button>  
 </div>
 
 
 <h3>Menu</h3>
 <p>"Try one of our great pizzas:"</p>
 <ul>
-    <li ng-repeat="item in menu">{{item.id}}. {{item.name}} <b>${{item.price}}</b><button ng-click="addToBasket(item)">+</button><br />{{item.ingredients}}</li>
+    <li ng-repeat="item in menu">{{item.id}}. {{item.name}} <b>${{item.price}}</b><button ng-click="basket.addItem(item)">+</button><br />{{item.ingredients}}</li>
 </ul>
 <p>{{errorMessage}}</p>
