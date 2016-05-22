@@ -1,7 +1,6 @@
-<div>
 <p>Basket</p>
 <ul>
     <li ng-repeat="item in basket.content">{{item.id}}. {{item.name}}; Price: ${{item.price}} <b>Quantity: {{item.quantity}}<b></li>
 </ul>
 <p><b>Total: </b>${{basket.getTotal()}}</p>
-</div>
+
