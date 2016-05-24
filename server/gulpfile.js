@@ -24,7 +24,7 @@ gulp.task('jshint', function() {
 
 gulp.task('watch', function() {
 //    gulp.watch(['./**/*.js', '!./node_modules/**/*', '!./gulpfile.js', './**/*.html', './css/*.css'], copy_dev)
-  gulp.watch(['./js/*.js', './data/*.js', './*.js', '!./gulpfile.js','./*.html', './partials/*.html', './css/*.css'], copy_dev)
+  gulp.watch(['./js/*.js', './data/*.js', './*.js', '!./gulpfile.js','./*.html', './partials/*.html', './css/*.css'], copy_dev);
 
 });
 
@@ -37,7 +37,7 @@ gulp.task('clean', function () {
 
 function copy_dev() {
      var angularStream = gulp.src(['node_modules/angular/angular.js', 'node_modules/angular-ui-router/release/angular-ui-router.js']).pipe(gulp.dest('../build/lib/'));
-     var jsStream = gulp.src(['./**/*.js', '!node_modules/**/*', '!gulpfile.js']).pipe(gulp.dest('../build/'));
+     var jsStream = gulp.src(['./js/*.js']).pipe(gulp.dest('../build/'));
      var cssStream = gulp.src('css/*.css').pipe(gulp.dest('../build/css/'));
      gulp.src(['./**/*.html', '!index.html', '!node_modules/**/*']).pipe(gulp.dest('../build/'));
      gulp.src('index.html')
@@ -49,19 +49,17 @@ gulp.task('build:dev', ['clean'], copy_dev);
 
 
 gulp.task('build:prod', ['clean'], function() {
-    var jsStream = gulp.src([ 'node_modules/angular/angular.js', 'node_modules/angular-ui-router/release/angular-ui-router.js', 
-                                './**/*.js', '!gulpfile.js', '!node_modules/**/*'])
+    var jsStream = gulp.src([ 'node_modules/angular/angular.js', 'node_modules/angular-ui-router/release/angular-ui-router.js', './js/*.js'])
         .pipe(sourcemaps.init())
         .pipe(concat('pizzeria.js'))
-        // //TODO: uglify destroys angular injection system?
-        // .pipe(ngAnnotate(
-        //     {
-        //     // true helps add where @ngInject is not used. It infers.
-        //     // Doesn't work with resolve, so we must be explicit there
-        //     add: true
-        //     }
-        // ))        
-    	// .pipe(uglify())
+        .pipe(ngAnnotate(
+            {
+            // true helps add where @ngInject is not used. It infers.
+            // Doesn't work with resolve, so we must be explicit there
+            add: true
+            }
+        ))        
+    	.pipe(uglify())
         .pipe(sourcemaps.write('../build/'))
         .pipe(gulp.dest('../build/'));
     var cssStream = gulp.src('css/*.css').pipe(gulp.dest('../build/css/'));

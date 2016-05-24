@@ -12,7 +12,7 @@ angular.module('pizzeria').controller('MainCtrl', function ($scope, dataFactory,
     
     
     $scope.printableIngredients = function(pizza) {
-        return (pizza.ingredients.map(x => x.label)).join(', ');
+        return (pizza.ingredients.map(function(x) { return x.label;})).join(', ');
     };
            
  });

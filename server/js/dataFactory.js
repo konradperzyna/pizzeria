@@ -13,7 +13,7 @@ angular.module('pizzeria').factory('dataFactory', ['$http', '$q', function($http
             for (pizza of menu) {
                 for (arrayId in pizza.ingredients) {
                     ingredientId = pizza.ingredients[arrayId];
-                    pizza.ingredients[arrayId] = ingredients.find(x=> x.id === ingredientId);
+                    pizza.ingredients[arrayId] = ingredients.find( function(x) {return x.id = ingredientId;});
                 }
             }
             return menu;
