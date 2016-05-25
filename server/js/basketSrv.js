@@ -10,7 +10,11 @@ angular.module('pizzeria').service('basket', function () {
         basket.content[pizza.id].quantity += 1;
     };
     
-     
+    basket.clearIfNeeded = function (pizza) {
+        if (basket.content[pizza.id].quantity <= 0) {
+            delete basket.content[pizza.id];
+        }
+    };
     
     basket.isEmpty = function() {
         return angular.equals({}, basket.content);
