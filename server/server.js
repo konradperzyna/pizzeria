@@ -180,7 +180,8 @@ setInterval(function () {
 httpServer = app.listen(8080, function () {
     console.log('Server running on port 8080.');
 });
-wsServer = new webSocketServer({
+
+/*jshint newcap:false*/ wsServer = new webSocketServer({
     httpServer: httpServer
 });
 

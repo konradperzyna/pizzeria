@@ -8,12 +8,13 @@ angular.module('pizzeria').factory('dataFactory', ['$http', '$q', function($http
             'menu' : $http.get('./menu'),
             'ingredients' : $http.get('./ingredients')
         }).then(function (response) {
-            menu = response.menu.data;
-            ingredients = response.ingredients.data;
-            for (pizza of menu) {
-                for (arrayId in pizza.ingredients) {
-                    ingredientId = pizza.ingredients[arrayId];
-                    pizza.ingredients[arrayId] = ingredients.find( function(x) {return x.id = ingredientId;});
+            var menu = response.menu.data;
+            var ingredients = response.ingredients.data;
+            for (var id in menu) {
+                var pizza = menu[id];
+                for (var arrayId in pizza.ingredients) {
+                    var ingredientId = pizza.ingredients[arrayId];
+                    pizza.ingredients[arrayId] = ingredients.find(/* jshint loopfunc: true */ function(x) {return x.id === ingredientId;});
                 }
             }
             return menu;

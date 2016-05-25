@@ -3,7 +3,7 @@ angular.module('pizzeria').controller('StatusCtrl', function ($scope, $state, $s
     $scope.title = "Status of order "+$stateParams.orderId;
     
     $scope.errorMessage = "";
-    $scope.orderStatus;
+    $scope.orderStatus = {};
     
     dataFactory.getOrderStatus($stateParams.orderId).then(function (response) {
         $scope.orderStatus = response.data;

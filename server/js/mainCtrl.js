@@ -1,7 +1,7 @@
 angular.module('pizzeria').controller('MainCtrl', function ($scope, dataFactory, basket) {
     
     $scope.errorMessage ="";
-    $scope.menu;
+    $scope.menu = [] ;
     $scope.basket = basket; 
     
     dataFactory.getMenu().then(function (menu) {
