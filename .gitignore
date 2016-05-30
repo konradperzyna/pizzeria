@@ -1,0 +1,5 @@
+#npm modules
+server/node_modules
+
+#build folder
+build
