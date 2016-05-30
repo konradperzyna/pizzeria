@@ -34,6 +34,26 @@ angular.module('pizzeria').factory('dataFactory', ['$http', '$q', function($http
     dataFactory.getContactInfo = function () {
         return $http.get('./contact');
     };
+    
+    dataFactory.sendOrder = function(basket, form) {
+        var order = {
+            order: [],
+            extras: [],
+            orderInfo: {}
+        };
+        
+        Object.keys(basket.content).map(function (key) {return basket.content[key];})
+        .forEach(function(pizza) {
+            order.order.push({
+                id: pizza.id,
+                quantity: pizza.quantity
+            });
+        });
+        
+        order.orderInfo = form;
+        
+        return $http.post('./order', order);
+    };
 
     return dataFactory;
 }]);

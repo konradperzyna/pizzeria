@@ -2,7 +2,35 @@
 
 <h3>Order</h3>
 <p>{{title}}</p>
-<!--<ul>
-    <li ng-repeat="item in inventory">{{item}}</li>
-</ul>-->
+
+<ng-form name="orderForm" ng-submit="submit()">
+    <table>
+        <tr>
+            <td>Phone number:</td>
+            <td><input type="text" name="phone" ng-model="phone" ng-required="true"
+             ng-pattern="/\d{9}/" ng-change="validate()" placeholder="9 digits only...">
+            <span>(required)</span></td>
+        </tr>
+        <tr>
+            <td>Street:</td>
+            <td><input type="text" name="street" ng-model="street" ng-required="true"
+             ng-pattern="/.{5,}/" ng-change="validate()" placeholder="more than 5 letters...">
+            <span>(required)</span></td>
+        </tr>
+        <tr>
+            <td>Remarks:</td>
+            <td><textarea cols="50" rows="5" ng-model="remarks"></textarea></td>
+        </tr>
+
+        <tr>
+            <td></td>
+            <td><button id="buttonBack" ng-click="back()">Back</button>
+            <input type="submit" id="buttonOrder" ng-disabled="isDisabled"
+             ng-click="submit()" value="Order"></td>
+        </tr>
+    </table>
+</ng-form>
+
+<span>{{errorMessage}}</span>
+
  
