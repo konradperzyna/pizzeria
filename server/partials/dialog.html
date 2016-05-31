@@ -1,0 +1,9 @@
+<h1>Customize your pizza</h1>
+<p>Your pizza: {{pizza.name}}</p>
+<div ng-repeat="ingredient in pizza.ingredients"> {{ingredient.label}} <button ng-click="removeIngredient(ingredient)">-</button> </div>
+<ul>
+    <li ng-repeat="item in ingredients">{{item.id}}. {{item.label}} <b>${{item.price}}</b><br />
+    </li>
+</ul>
+
+<button ng-click="basket.addItem(pizza)">+</button> 

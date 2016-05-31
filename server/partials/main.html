@@ -7,7 +7,7 @@
 <h3>Menu</h3>
 <p>"Try one of our great pizzas:"</p>
 <ul>
-    <li ng-repeat="item in menu">{{item.id}}. {{item.name}} <b>${{item.price}}</b><button ng-click="basket.addItem(item)">+</button><br />
+    <li ng-repeat="item in menu">{{item.id}}. {{item.name}} <b>${{item.price}}</b><button ng-click="basket.addItem(item)">+</button> <button ng-click="openCustomizePizzaDialog(item)">ble</button><br />
         {{printableIngredients(item)}}
     </li>
 </ul>

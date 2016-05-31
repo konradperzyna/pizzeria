@@ -1,4 +1,4 @@
-angular.module('pizzeria', ['ui.router']).config(/* @ngInject */ function ($stateProvider, $urlRouterProvider) {
+angular.module('pizzeria', ['ui.router', 'ngDialog']).config(/* @ngInject */ function ($stateProvider, $urlRouterProvider) {
     $stateProvider
         .state('main', {
             url: '/main',
