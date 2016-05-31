@@ -1,4 +1,25 @@
 <h3>Order status</h3>
 <p>{{title}}</p>
-<p>{{orderStatus}}</p>
+Pizzas:
+<ul>
+    <li ng-repeat="pizza in orderStatus.order.order">{{menu[pizza.pizza.id].name}} x{{pizza.quantity}}</li>
+</ul>
+Order details:<br/>
+<table>
+    <tr>
+        <td>Phone:</td>
+        <td>{{orderStatus.orderInfo.phone}}</td>
+    </tr>
+    <tr>
+        <td>Street:</td>
+        <td>{{orderStatus.orderInfo.street}}</td>
+    </tr>
+    <tr>
+        <td>Remarks:</td>
+        <td>{{orderStatus.orderInfo.remarks}}</td>
+    </tr>
+</table>
+<p>Estimate time: {{estimateTime}}</p>
+<p>Status: {{status}}</p>
+
 <p>{{errorMessage}}</p>
