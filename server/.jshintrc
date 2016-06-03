@@ -9,5 +9,7 @@
 
 "globals"	: {	"module" : false,
 			"angular" : false,
-			"console" : false }
+			"console" : false,
+            "window" : false
+            }
 }

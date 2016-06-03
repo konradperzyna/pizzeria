@@ -36,12 +36,13 @@ gulp.task('clean', function () {
 
 
 function copy_dev() {
-     var angularStream = gulp.src(['node_modules/angular/angular.js', 'node_modules/angular-ui-router/release/angular-ui-router.js', 'node_modules/ng-dialog/js/ngDialog.js']).pipe(gulp.dest('../build/lib/'));
+     var libStream = gulp.src(['node_modules/angular/angular.js', 'node_modules/angular-ui-router/release/angular-ui-router.js', 
+            'node_modules/ng-dialog/js/ngDialog.js']).pipe(gulp.dest('../build/lib/'));
      var jsStream = gulp.src(['./js/*.js']).pipe(gulp.dest('../build/'));
      var cssStream = gulp.src(['node_modules/ng-dialog/css/ngDialog.css', 'node_modules/ng-dialog/css/ngDialog-theme-default.css', 'css/*.css']).pipe(gulp.dest('../build/css/'));
      gulp.src(['./**/*.html', '!index.html', '!node_modules/**/*']).pipe(gulp.dest('../build/'));
      gulp.src('index.html')
-         .pipe(inject(es.merge([angularStream, jsStream, cssStream]), {ignorePath: '../build/'}))
+         .pipe(inject(es.merge([libStream, jsStream, cssStream]), {ignorePath: '../build/'}))
          .pipe(gulp.dest('../build/'));
 }
 

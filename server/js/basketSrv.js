@@ -1,14 +1,19 @@
 angular.module('pizzeria').service('basket', function () {
     var basket = this;
-    basket.content = {};
+    basket.content = [];
     
+
     basket.addItem = function (pizza) {
-        if (!(pizza.id in basket.content)) {
+        var index = basket.content.indexOf(pizza);
+        
+        if (index == -1) {
             pizza.quantity = 0;
-            basket.content[pizza.id] = pizza;
+            basket.content.push(pizza);
+            index = basket.content.indexOf(pizza);
         }
-        basket.content[pizza.id].quantity += 1;
+        basket.content[index].quantity += 1;
     };
+    
     
     basket.clearIfNeeded = function (pizza) {
         if (basket.content[pizza.id].quantity <= 0) {
@@ -25,7 +30,7 @@ angular.module('pizzeria').service('basket', function () {
         var total = 0;
         for (var id in basket.content) {
             var pizza = basket.content[id];
-            total += pizza.quantity * pizza.price;
+            total += pizza.getPrice();
         }
         return total;
     };

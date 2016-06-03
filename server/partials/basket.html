@@ -1,7 +1,7 @@
 <p>Basket</p>
 <ul>
-    <li ng-repeat="item in basket.content">{{item.id}}. {{item.name}}; Price: ${{item.price}} 
-        <b>Quantity: <input type="number"  ng-model="item.quantity" ng-change="basket.clearIfNeeded(item)" ng-model-options='{ debounce: 1000 }'/><b>
+    <li ng-repeat="item in basket.content">{{item.id}}. {{item.name}}{{item.printableCustomizations()}}. Price: ${{item.getPrice()}} 
+        <b>Quantity: <input type="number"  ng-model="item.quantity" ng-change="basket.clearIfNeeded(item)" ng-model-options='{ debounce: 1000 }'/></b>
     </li>
 </ul>
 <p><b>Total: </b>${{basket.getTotal()}}</p>
