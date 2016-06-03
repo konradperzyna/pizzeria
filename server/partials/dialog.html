@@ -1,9 +1,17 @@
 <h1>Customize your pizza</h1>
 <p>Your pizza: {{pizza.name}}</p>
-<div ng-repeat="ingredient in pizza.ingredients"> {{ingredient.label}} <button ng-click="removeIngredient(ingredient)">-</button> </div>
+<div ng-repeat="id in pizza.ingredients"> {{getIngredient(id).label}} <button ng-click="removeIngredient(id)">-</button> </div>
+<p>Extra ingredients:</p>
+<div ng-repeat="extra in pizza.extras"> {{getIngredient(extra.id).label}} 
+<input type="number"  ng-model="extra.quantity" ng-change="clearIfNeeded(extra.id)" ng-model-options='{ debounce: 800 }'/>
+<b>${{extra.quantity * getIngredient(extra.id).price}}</b>     
+</div>
+<p>Total price: {{pizza.price + extrasTotal()}}</p> 
+<button ng-click="basket.addItem(pizza)">Add to basket</button> 
+
 <ul>
-    <li ng-repeat="item in ingredients">{{item.id}}. {{item.label}} <b>${{item.price}}</b><br />
+    <li ng-repeat="item in ingredients">{{item.id}}. {{item.label}} <b>${{item.price}}</b> <button ng-click="addExtras(item.id)">+</button><br />
     </li>
 </ul>
 
-<button ng-click="basket.addItem(pizza)">+</button> 
+
