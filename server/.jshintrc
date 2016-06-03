@@ -10,6 +10,7 @@
 "globals"	: {	"module" : false,
 			"angular" : false,
 			"console" : false,
-            "window" : false
+            "window" : false,
+            "Pizza" : true
             }
 }
