@@ -11,6 +11,8 @@ angular.module('pizzeria').controller('StatusCtrl', function ($scope, $state, $s
     dataFactory.getOrderStatus($stateParams.orderId).then(function (response) {
         $scope.orderStatus = response.data;
         
+        console.log($scope.orderStatus);
+        
         dataFactory.getMenu().then(function(response) {
             $scope.menu = response;
         }, function(error) {

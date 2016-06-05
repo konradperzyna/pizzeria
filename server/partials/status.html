@@ -2,7 +2,7 @@
 <p>{{title}}</p>
 Pizzas:
 <ul>
-    <li ng-repeat="pizza in orderStatus.order.order">{{menu[pizza.pizza.id].name}} x{{pizza.quantity}}</li>
+    <li ng-repeat="pizza in orderStatus.order.order">{{menu[pizza.pizza.id - 1].name}} x{{pizza.quantity}}</li>
 </ul>
 Order details:<br/>
 <table>
