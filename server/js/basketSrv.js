@@ -1,4 +1,4 @@
-angular.module('pizzeria').service('basket', function () {
+angular.module('pizzeria').service('basket', function ($state) {
     var basket = this;
     basket.content = [];
     
@@ -16,13 +16,16 @@ angular.module('pizzeria').service('basket', function () {
     
     
     basket.clearIfNeeded = function (pizza) {
-        if (basket.content[pizza.id].quantity <= 0) {
-            delete basket.content[pizza.id];
-        }
+        basket.content.forEach(function(value, index) {
+            if(value.$$hashKey === pizza.$$hashKey && value.quantity <= 0) {
+                basket.content.splice(index, 1);
+            }
+        });
+        console.log(basket);
     };
     
     basket.isEmpty = function() {
-        return angular.equals({}, basket.content);
+        return angular.equals([], basket.content);
     };
     
     
@@ -34,5 +37,8 @@ angular.module('pizzeria').service('basket', function () {
         }
         return total;
     };
-
+    
+    basket.readOnly = function() {
+        return $state.current.url == "/order" ? true : false;
+    };
 });

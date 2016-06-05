@@ -7,7 +7,7 @@
 <h3>Menu</h3>
 <p>"Try one of our great pizzas:"</p>
 <ul>
-    <li ng-repeat="pizza in menu">{{pizza.id}}. {{pizza.name}} <b>${{pizza.price}}</b>
+    <li ng-repeat="(index, pizza) in menu">{{index + 1}}. {{pizza.name}} <b>${{pizza.price}}</b>
     <button ng-click="basket.addItem(pizza)">+</button> 
     <button ng-click="openCustomizePizzaDialog(pizza)">customize</button><br />
         {{pizza.printableIngredients()}}

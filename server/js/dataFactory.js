@@ -9,6 +9,7 @@ angular.module('pizzeria').factory('dataFactory', ['$http', '$q', function($http
             'ingredients' : $http.get('./ingredients')
         }).then(function (response) {
             var menu = response.menu.data;
+            console.log(menu);
             var ingredients = response.ingredients.data;
             Pizza.availableIngredients = ingredients;
             for (var id in menu) {
@@ -16,6 +17,7 @@ angular.module('pizzeria').factory('dataFactory', ['$http', '$q', function($http
                 var pizza = new Pizza(pizzaData.id, pizzaData.name, pizzaData.price, pizzaData.ingredients.splice(0));
                 menu[id] = pizza;
             }
+            
             return menu;
         });
     };
